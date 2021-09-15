@@ -8,7 +8,7 @@ pipeline {
   
   stages {
     stage("create docker image") {
-      staps {
+      steps {
         echo "start building image"
         dir ('intermine_builder') {
             sh 'docker build .'
