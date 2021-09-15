@@ -14,6 +14,7 @@ variables:
   buildConfiguration: 'Release'
   ServiceConnnectionName: 'Tailspin.SpaceGame.Web.Full'
   tag: '$(Build.BuildId)'
+  group: Release2
 
 stages:
 - stage: Build
@@ -32,11 +33,9 @@ stages:
         tags: |
           $(tag)
 
-variables:
-  - group: Release2
-    
-steps:
-  - script: |
+
+    steps:
+    - script: |
         # Exit when any command returns a failure status.
         set -e
         # Write terraform.tfvars.
@@ -54,7 +53,7 @@ steps:
         WebAppNameDev=$(terraform output --raw appservice_name)
         # Write the WebAppNameDev variable to the pipeline.
         echo "##vso[task.setvariable variable=WebAppNameDev;isOutput=true]$WebAppNameDev"
-    name: 'RunTerraform'
+      name: 'RunTerraform'
       displayName: 'Run Terraform'
       env:
         ARM_CLIENT_ID: $(ARM_CLIENT_ID)
