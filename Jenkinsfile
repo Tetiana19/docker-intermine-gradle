@@ -10,7 +10,7 @@ pipeline {
     stage("create docker image") {
       steps {
         echo "start building image"
-        dir ('intermine_builder') {
+        dir ('postgres') {
             sh 'docker build .'
         }
       }   
