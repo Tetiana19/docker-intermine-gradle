@@ -10,7 +10,7 @@ pipeline {
     stage("create docker image") {
       steps {
         echo "start building image"
-        dir ('postgres') {
+        dir ('tomcat') {
             sh 'docker build .'
         }
       }   
